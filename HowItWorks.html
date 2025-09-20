@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Med Ease</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .step-tab.active {
+            background: white;
+            color: black;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .step-content.hidden {
+            display: none;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .process-line {
+            position: relative;
+        }
+
+        .process-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.5) 0%, rgba(16, 185, 129, 0.5) 50%, rgba(239, 68, 68, 0.5) 100%);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step-circle {
+            position: relative;
+            z-index: 2;
+            background: #0f0f0f;
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+        <div class="mx-auto max-w-[1400px] px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl font-bold tracking-tight">MED EASE</span>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="home.html" class="text-neutral-300 hover:text-white transition font-medium">Home</a>
+                    <a href="AboutUs.html" class="text-neutral-300 hover:text-white transition font-medium">About Us</a>
+                    <a href="contact.html" class="text-neutral-300 hover:text-white transition font-medium">Contact</a>
+                </nav>
+                <button class="md:hidden text-white">
+                    <span class="text-sm font-medium">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20">
+        <!-- Hero Section -->
+        <section class="relative py-20 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="text-center mb-16 fade-in-up">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6" style="font-family: 'Bebas Neue', sans-serif;">
+                        HOW IT <span class="font-medium italic" style="font-family: 'Playfair Display', serif;">Works</span>
+                    </h1>
+                    <p class="text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed">
+                        Our simple three-step process to help you understand your health and connect with the right care. 
+                        Experience healthcare that's intelligent, accessible, and designed around you.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Overview -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="relative">
+                    <div class="process-line mb-16">
+                        <div class="flex justify-between items-center">
+                            <div class="step-circle w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-lg">1</div>
+                            <div class="step-circle w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-lg">2</div>
+                            <div class="step-circle w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-lg">3</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-blue-400">CHECK</h3>
+                            <p class="text-neutral-300">Input symptoms and medical history</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-green-400">ANALYZE</h3>
+                            <p class="text-neutral-300">AI-powered analysis and recommendations</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-red-400">CONNECT</h3>
+                            <p class="text-neutral-300">Find and book appropriate care</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Steps Section -->
+        <section class="relative bg-neutral-950 border-white/10 border-t pt-24 pb-24">
+            <div class="mx-auto max-w-[1400px] px-6">
+                <!-- Step Tabs -->
+                <div class="mb-10 fade-in-up">
+                    <div class="grid grid-cols-3 gap-4">
+                        <button class="step-tab active rounded-xl border px-4 py-3 text-sm font-medium tracking-tight transition" data-step="1">
+                            CHECK
+                        </button>
+                        <button class="step-tab hover:text-white transition text-sm font-medium tracking-tight border-white/10 border rounded-xl pt-3 pr-4 pb-3 pl-4 bg-neutral-900/50 text-white/80" data-step="2">
+                            ANALYZE
+                        </button>
+                        <button class="step-tab hover:text-white transition text-sm font-medium tracking-tight border-white/10 border rounded-xl pt-3 pr-4 pb-3 pl-4 bg-neutral-900/50 text-white/80" data-step="3">
+                            CONNECT
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content Card -->
+                <div class="relative overflow-hidden md:p-10 transition-all duration-700 bg-neutral-900/60 border-white/10 border rounded-2xl pt-6 pr-6 pb-6 pl-6 fade-in-up">
+                    <div class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-white/5 via-transparent to-transparent"></div>
+
+                    <div class="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-24">
+                        <!-- Enhanced Visuals -->
+                        <div class="relative order-2 lg:order-1">
+                            <!-- Main Design Mockup Card -->
+                            <div class="bg-neutral-900/80 border-white/15 border rounded-2xl pt-6 pr-6 pb-6 pl-6 backdrop-blur-sm">
+                                <div class="flex items-center justify-between text-[13px] text-white/80 mb-6">
+                                    <span class="tracking-tight font-medium">Med Ease</span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full" id="step-indicator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                            <path d="M9 12l2 2 4-4"></path>
+                                            <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                        </svg>
+                                        <span class="font-medium">Check Symptoms</span>
+                                    </span>
+                                </div>
+
+                                <!-- Central Visual -->
+                                <div class="relative mb-6">
+                                    <div class="flex w-full h-80 bg-gradient-to-br from-blue-500/20 to-green-500/20 border-0 rounded-xl items-center justify-center" id="step-visual">
+                                        <div class="text-center">
+                                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                                                    <path d="M9 12l2 2 4-4"></path>
+                                                    <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                                </svg>
+                                            </div>
+                                            <p class="text-white/90 text-sm">Med Ease Symptom Checker Interface</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Enhanced Stats Grid -->
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-white/5 p-3 rounded-lg">
+                                        <div class="text-white/90 font-medium">Accuracy</div>
+                                        <div class="text-2xl font-bold text-blue-400">95%</div>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded-lg">
+                                        <div class="text-white/90 font-medium">Speed</div>
+                                        <div class="text-2xl font-bold text-green-400">2min</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Enhanced Floating Progress Panel -->
+                            <div class="absolute left-6 -bottom-8 w-[88%] rounded-xl border border-white/15 bg-neutral-800/90 p-4 backdrop-blur-md md:left-10 md:w-[80%] md:-bottom-10 shadow-2xl">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                                    <div class="text-sm text-white/90 font-medium tracking-tight">Your Health Journey</div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-400/30">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                                <path d="M9 12l2 2 4-4"></path>
+                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between text-sm text-white/90 mb-1">
+                                                <span class="font-medium">Check Symptoms & Reports</span>
+                                                <span class="text-blue-400 font-semibold" id="step1-progress">100%</span>
+                                            </div>
+                                            <div class="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                                                <div class="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transition-all duration-500" id="step1-bar" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 border border-white/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/70">
+                                                <path d="M9 12l2 2 4-4"></path>
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between text-sm text-white/70 mb-1">
+                                                <span>Analyze Results</span>
+                                                <span class="text-white/50" id="step2-progress">0%</span>
+                                            </div>
+                                            <div class="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                                                <div class="h-full bg-white/40 rounded-full transition-all duration-500" id="step2-bar" style="width: 0%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 border border-white/15">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/50">
+                                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="9" cy="7" r="4"></circle>
+                                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between text-sm text-white/60 mb-1">
+                                                <span>Connect to Care</span>
+                                                <span class="text-white/40" id="step3-progress">0%</span>
+                                            </div>
+                                            <div class="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                                                <div class="h-full bg-white/30 rounded-full transition-all duration-500" id="step3-bar" style="width: 0%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text Panels -->
+                        <div class="order-1 lg:order-2">
+                            <!-- Step 1 - Check -->
+                            <div data-panel="1" class="step-content space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="text-white/60 tracking-tight font-medium">01</div>
+                                    <div class="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent"></div>
+                                </div>
+
+                                <h3 class="text-2xl font-semibold tracking-tight text-white">Check Your Symptoms</h3>
+                                <p class="text-neutral-400 leading-relaxed">
+                                    Start by telling us how you feel. Our intelligent, interactive questionnaire makes it easy to 
+                                    describe your symptoms, their severity, and duration. You can also upload existing medical 
+                                    reports for a more complete picture.
+                                </p>
+
+                                <ul class="mt-6 space-y-4 text-neutral-300">
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                                <path d="M9 12l2 2 4-4"></path>
+                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Guided & Simple Questionnaire</div>
+                                            <div class="text-sm text-white/60 mt-1">Answer easy questions to build a clear profile of your current health concern.</div>
+                                        </div>
+                                    </li>
+
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-green-500/20 border border-green-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400">
+                                                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                                <path d="m9 12 2 2 4-4"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Secure & Private Input</div>
+                                            <div class="text-sm text-white/60 mt-1">Your information is encrypted and confidential from the very first step.</div>
+                                        </div>
+                                    </li>
+
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/20 border border-purple-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7,10 12,15 17,10"></polyline>
+                                                <line x1="12" x2="12" y1="15" y2="3"></line>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Comprehensive Data Upload</div>
+                                            <div class="text-sm text-white/60 mt-1">Add lab reports, images, or doctor's notes for a more thorough analysis.</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Step 2 - Analyze -->
+                            <div data-panel="2" class="step-content space-y-4 hidden">
+                                <div class="flex items-center gap-3">
+                                    <div class="text-white/60 tracking-tight font-medium">02</div>
+                                    <div class="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent"></div>
+                                </div>
+
+                                <h3 class="text-2xl font-semibold tracking-tight text-white">Analyze Your Results</h3>
+                                <p class="text-neutral-400 leading-relaxed">
+                                    Our AI-powered system instantly processes your information. We provide a clear, 
+                                    easy-to-understand summary, highlighting potential conditions, risk levels, and 
+                                    actionable next steps.
+                                </p>
+
+                                <ul class="mt-6 space-y-4 text-neutral-300">
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-pink-500/20 border border-pink-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-pink-400">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                                <path d="M12 17h.01"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Instant AI-Powered Analysis</div>
+                                            <div class="text-sm text-white/60 mt-1">Receive a preliminary risk assessment and a list of possible conditions.</div>
+                                        </div>
+                                    </li>
+
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-orange-500/20 border border-orange-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                                <polyline points="14,2 14,8 20,8"></polyline>
+                                                <line x1="16" x2="8" y1="13" y2="13"></line>
+                                                <line x1="16" x2="8" y1="17" y2="17"></line>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Simplified Report Summaries</div>
+                                            <div class="text-sm text-white/60 mt-1">We translate complex medical jargon and lab values into plain language.</div>
+                                        </div>
+                                    </li>
+
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-cyan-500/20 border border-cyan-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400">
+                                                <path d="M9 11H5a2 2 0 0 0-2 2v3c0 1.1.9 2 2 2h4l5 4V7l-5 4z"></path>
+                                                <path d="M22 9c0-5-3-7-7-7s-7 2-7 7 3 7 7 7 7-2 7-7z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Clear Next Steps</div>
+                                            <div class="text-sm text-white/60 mt-1">Understand whether to manage at home, book a follow-up, or seek urgent care.</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Step 3 - Connect -->
+                            <div data-panel="3" class="step-content space-y-4 hidden">
+                                <div class="flex items-center gap-3">
+                                    <div class="text-white/60 tracking-tight font-medium">03</div>
+                                    <div class="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent"></div>
+                                </div>
+
+                                <h3 class="text-2xl font-semibold tracking-tight text-white">Connect to Care</h3>
+                                <p class="text-neutral-400 leading-relaxed">
+                                    Based on your analysis, we help you find the right healthcare professional. Search, filter, 
+                                    and connect with top-rated doctors, specialists, and hospitals in your area directly 
+                                    through the app.
+                                </p>
+
+                                <ul class="mt-6 space-y-4 text-neutral-300">
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 border border-red-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400">
+                                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="9" cy="7" r="4"></circle>
+                                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Personalized Specialist Matching</div>
+                                            <div class="text-sm text-white/60 mt-1">We recommend the right type of doctor for your specific health needs.</div>
+                                        </div>
+                                    </li>
+
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500/20 border border-yellow-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M16 8l-4 4-2-2"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Find Nearby Providers</div>
+                                            <div class="text-sm text-white/60 mt-1">Access a directory of local doctors and hospitals with ratings and availability.</div>
+                                        </div>
+                                    </li>
+
+                                    <li class="flex items-start gap-3">
+                                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500/20 border border-indigo-400/30 mt-0.5 flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400">
+                                                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                                                <line x1="16" x2="16" y1="2" y2="6"></line>
+                                                <line x1="8" x2="8" y1="2" y2="6"></line>
+                                                <line x1="3" x2="21" y1="10" y2="10"></line>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-medium text-white/90">Seamless Appointment Booking</div>
+                                            <div class="text-sm text-white/60 mt-1">Get contact information and directions to easily schedule your visit.</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Why Choose Med Ease</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl card-hover">
+                        <div class="w-16 h-16 mx-auto mb-6 bg-blue-500/20 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white">Fast & Accurate</h3>
+                        <p class="text-neutral-300">Get instant, AI-powered analysis with 95% accuracy in under 2 minutes.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl card-hover">
+                        <div class="w-16 h-16 mx-auto mb-6 bg-green-500/20 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🔒</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white">Secure & Private</h3>
+                        <p class="text-neutral-300">HIPAA-compliant platform ensures your health data remains confidential.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl card-hover">
+                        <div class="w-16 h-16 mx-auto mb-6 bg-purple-500/20 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🌐</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white">24/7 Available</h3>
+                        <p class="text-neutral-300">Access healthcare guidance anytime, anywhere from any device.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-20 px-6">
+            <div class="mx-auto max-w-[1400px] text-center">
+                <h2 class="text-4xl font-bold mb-6 gradient-text">Ready to Start Your Health Journey?</h2>
+                <p class="text-xl text-neutral-300 mb-12 max-w-3xl mx-auto">
+                    Experience the future of healthcare. Get personalized insights and connect with the right care in minutes.
+                </p>
+                <button class="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-neutral-200 transition text-lg">
+                    Start Your Checkup Now
+                </button>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        // Interactive step functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepTabs = document.querySelectorAll('.step-tab');
+            const stepContents = document.querySelectorAll('.step-content');
+            const stepIndicator = document.getElementById('step-indicator');
+            const stepVisual = document.getElementById('step-visual');
+            
+            // Step data for visual updates
+            const stepData = {
+                1: {
+                    title: 'Check Symptoms',
+                    icon: 'M9 12l2 2 4-4M3 3h18v18H3z',
+                    gradient: 'from-blue-500/20 to-green-500/20',
+                    progress: [100, 0, 0],
+                    description: 'Med Ease Symptom Checker Interface'
+                },
+                2: {
+                    title: 'Analyze Results', 
+                    icon: 'M9 12l2 2 4-4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z',
+                    gradient: 'from-pink-500/20 to-orange-500/20',
+                    progress: [100, 100, 0],
+                    description: 'AI Analysis Processing'
+                },
+                3: {
+                    title: 'Connect to Care',
+                    icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 7a4 4 0 1 1 8 0 4 4 0 0 1-8 0M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+                    gradient: 'from-red-500/20 to-purple-500/20',
+                    progress: [100, 100, 100],
+                    description: 'Healthcare Provider Matching'
+                }
+            };
+
+            function updateStep(stepNumber) {
+                const data = stepData[stepNumber];
+                
+                // Update tabs
+                stepTabs.forEach(tab => {
+                    tab.classList.remove('active', 'bg-white', 'text-black');
+                    tab.classList.add('bg-neutral-900/50', 'text-white/80');
+                });
+                
+                const activeTab = document.querySelector(`[data-step="${stepNumber}"]`);
+                activeTab.classList.add('active', 'bg-white', 'text-black');
+                activeTab.classList.remove('bg-neutral-900/50', 'text-white/80');
+
+                // Update content panels
+                stepContents.forEach(content => content.classList.add('hidden'));
+                document.querySelector(`[data-panel="${stepNumber}"]`).classList.remove('hidden');
+
+                // Update visual indicator
+                stepIndicator.querySelector('span').textContent = data.title;
+                
+                // Update visual background
+                stepVisual.className = `flex w-full h-80 bg-gradient-to-br ${data.gradient} border-0 rounded-xl items-center justify-center`;
+                stepVisual.querySelector('p').textContent = data.description;
+
+                // Update progress bars
+                const progressBars = ['step1-bar', 'step2-bar', 'step3-bar'];
+                const progressTexts = ['step1-progress', 'step2-progress', 'step3-progress'];
+                
+                data.progress.forEach((progress, index) => {
+                    const bar = document.getElementById(progressBars[index]);
+                    const text = document.getElementById(progressTexts[index]);
+                    if (bar && text) {
+                        bar.style.width = `${progress}%`;
+                        text.textContent = `${progress}%`;
+                    }
+                });
+            }
+
+            // Add click handlers to tabs
+            stepTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const stepNumber = parseInt(this.dataset.step);
+                    updateStep(stepNumber);
+                });
+            });
+
+            // Auto-cycle through steps (optional)
+            let currentStep = 1;
+            setInterval(() => {
+                currentStep = currentStep === 3 ? 1 : currentStep + 1;
+                updateStep(currentStep);
+            }, 8000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+.bookmarkBtn {
+      width: auto;
+      min-width: 120px;
+      height: 40px;
+      border-radius: 40px;
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      background-color: rgb(12, 12, 12);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      transition-duration: 0.3s;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+    }
+
+    .IconContainer {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(to bottom, rgb(96, 165, 250), rgb(59, 130, 246));
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 2;
+      transition-duration: 0.3s;
+      flex-shrink: 0;
+      margin-left: 5px;
+      position: relative;
+    }
+
+    .icon {
+      border-radius: 1px;
+      transition-duration: 0.3s;
+    }
+
+    .text {
+      height: 100%;
+      width: auto;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 1;
+      transition-duration: 0.3s;
+      font-size: 0.9em;
+      margin: 0;
+      margin-left: 8px;
+      margin-right: 8px;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .bookmarkBtn:hover .IconContainer {
+      width: calc(100% - 10px);
+      border-radius: 35px;
+      margin-left: 5px;
+      transition-duration: 0.3s;
+    }
+
+    .bookmarkBtn:hover .text {
+      opacity: 0;
+      transform: translateX(30px);
+      transition-duration: 0.3s;
+    }
+
+    .bookmarkBtn:active {
+      transform: scale(0.95);
+      transition-duration: 0.3s;
+    }
+
+    .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+    }
+        
+    .logo-icon {
+            width: 36px;
+            height: 36px;
+    }
+
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+        .animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
+        .animate-delay-100 { animation-delay: 0.1s; }
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-300 { animation-delay: 0.3s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-delay-500 { animation-delay: 0.5s; }
+        .animate-delay-600 { animation-delay: 0.6s; }
+        .animate-delay-700 { animation-delay: 0.7s; }
+        .animate-delay-800 { animation-delay: 0.8s; }
+    
+    @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(2rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Add to existing styles */
+.chatbot-typing {
+    animation: chatbot-pulse 1.5s infinite;
+}
+
+@keyframes chatbot-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.message-fade-in {
+    animation: message-fade-in 0.3s ease-out;
+}
+
+@keyframes message-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#chatMessages::-webkit-scrollbar {
+    width: 4px;
+}
+
+#chatMessages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+#chatMessages::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 2px;
+}
+
+#chatMessages::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.7);
+}

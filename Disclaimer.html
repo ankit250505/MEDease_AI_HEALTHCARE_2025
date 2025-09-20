@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - Med Ease</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .warning-box {
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+        }
+
+        .info-box {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+        }
+
+        .emergency-box {
+            border-left: 4px solid #ef4444;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+        <div class="mx-auto max-w-[1400px] px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl font-bold tracking-tight">MED EASE</span>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="home.html" class="text-neutral-300 hover:text-white transition font-medium">Home</a>
+                    <a href="HowItWorks.html" class="text-neutral-300 hover:text-white transition font-medium">How It Works</a>
+                    <a href="AboutUS.html" class="text-neutral-300 hover:text-white transition font-medium">About Us</a>
+                    <a href="FAQ.html" class="text-neutral-300 hover:text-white transition font-medium">FAQ & Support</a>     
+                </nav>
+                <button class="md:hidden text-white">
+                    <span class="text-sm font-medium">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20">
+        <!-- Hero Section -->
+        <section class="relative py-20 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                        <span class="gradient-text">Medical Disclaimer</span>
+                    </h1>
+                    <p class="text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed">
+                        Important legal and medical information regarding the use of Med Ease platform and services. 
+                        Please read carefully before using our services.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Notice -->
+        <section class="py-8 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="emergency-box p-8 rounded-2xl border border-red-500/20 mb-12">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-400 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold text-red-400">Emergency Medical Situations</h2>
+                    </div>
+                    <p class="text-white/90 text-lg leading-relaxed">
+                        <strong>IF YOU ARE EXPERIENCING A MEDICAL EMERGENCY, DO NOT USE THIS PLATFORM.</strong> 
+                        Call 911 (US), 108 (India), or your local emergency number immediately. Med Ease is not designed 
+                        to handle emergency medical situations and should never be used as a substitute for emergency medical care.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Disclaimer Content -->
+        <section class="py-8 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="max-w-4xl mx-auto space-y-12">
+                    
+                    <!-- General Medical Disclaimer -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            General Medical Disclaimer
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                The information provided by Med Ease ("we," "us," or "our") on our website and mobile application 
+                                (the "Service") is for <strong class="text-white">informational and educational purposes only</strong>. 
+                                The content is not intended to be a substitute for professional medical advice, diagnosis, or treatment.
+                            </p>
+                            <p>
+                                <strong class="text-white">Always seek the advice of your physician or other qualified healthcare provider</strong> 
+                                with any questions you may have regarding a medical condition. Never disregard professional medical advice 
+                                or delay in seeking it because of something you have read or accessed through Med Ease.
+                            </p>
+                            <p>
+                                The symptom checker and analysis provided by Med Ease is powered by artificial intelligence and algorithms. 
+                                While we strive for accuracy, <strong class="text-white">this technology cannot replace the clinical 
+                                judgment of trained medical professionals</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- AI Technology Disclaimer -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                            AI Technology Limitations
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                Med Ease utilizes artificial intelligence and machine learning algorithms to analyze symptoms and 
+                                provide health insights. While our technology is sophisticated and continuously improving, it has limitations:
+                            </p>
+                            <ul class="space-y-3 ml-6">
+                                <li class="flex items-start">
+                                    <span class="text-blue-400 mr-3 mt-1">•</span>
+                                    AI analysis is based on patterns in data and may not account for unique individual circumstances
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-400 mr-3 mt-1">•</span>
+                                    Results may vary in accuracy and should always be verified by healthcare professionals
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-400 mr-3 mt-1">•</span>
+                                    Our system cannot physically examine you or perform diagnostic tests
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-400 mr-3 mt-1">•</span>
+                                    Rare conditions may not be adequately represented in our algorithms
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- No Doctor-Patient Relationship -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            No Doctor-Patient Relationship
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                <strong class="text-white">Use of Med Ease does not create a doctor-patient relationship</strong> 
+                                between you and Med Ease, our employees, agents, or healthcare provider partners. Any information 
+                                you receive through our Service is not intended to replace consultations with qualified healthcare professionals.
+                            </p>
+                            <p>
+                                Communications through our platform are not confidential medical communications and do not constitute 
+                                a medical consultation. For confidential medical advice and treatment, please consult with a licensed 
+                                healthcare provider in person or through authorized telemedicine platforms.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Accuracy and Reliability -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                            Accuracy and Reliability
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                While we make every effort to provide accurate and up-to-date information, we cannot guarantee 
+                                the completeness, accuracy, or reliability of any information provided through Med Ease. 
+                                Medical knowledge is constantly evolving, and information that was accurate at the time of 
+                                publication may become outdated.
+                            </p>
+                            <div class="warning-box p-6 rounded-xl">
+                                <h3 class="font-semibold text-yellow-400 mb-3">Important Notice:</h3>
+                                <p class="text-neutral-200">
+                                    Med Ease is not liable for any errors, omissions, or inaccuracies in the information provided. 
+                                    Users are responsible for verifying information with qualified healthcare professionals before 
+                                    making any health-related decisions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Limitation of Liability -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            Limitation of Liability
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                To the fullest extent permitted by law, Med Ease, its officers, directors, employees, agents, 
+                                and affiliates shall not be liable for any direct, indirect, incidental, special, consequential, 
+                                or punitive damages arising out of or relating to your use of our Service.
+                            </p>
+                            <p>
+                                This includes, but is not limited to, damages for:
+                            </p>
+                            <ul class="space-y-2 ml-6">
+                                <li class="flex items-start">
+                                    <span class="text-red-400 mr-3 mt-1">•</span>
+                                    Personal injury or health complications
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-400 mr-3 mt-1">•</span>
+                                    Delayed or inadequate medical treatment
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-400 mr-3 mt-1">•</span>
+                                    Loss of data or privacy breaches
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-400 mr-3 mt-1">•</span>
+                                    Service interruptions or technical failures
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Regulatory Compliance -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            Regulatory Compliance
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                Med Ease complies with applicable healthcare regulations including HIPAA (Health Insurance Portability 
+                                and Accountability Act) in the United States and similar privacy laws in other jurisdictions. However, 
+                                our Service is not intended to meet all regulatory requirements for medical practice.
+                            </p>
+                            <div class="info-box p-6 rounded-xl">
+                                <h3 class="font-semibold text-blue-400 mb-3">Regional Variations:</h3>
+                                <p class="text-neutral-200">
+                                    Healthcare regulations vary by country and region. Users are responsible for ensuring that 
+                                    their use of Med Ease complies with local laws and regulations. Med Ease may not be available 
+                                    in all jurisdictions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Updates and Changes -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-cyan-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                            Updates and Changes
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                Med Ease reserves the right to update, modify, or discontinue any aspect of our Service at any time. 
+                                This disclaimer may be updated periodically to reflect changes in our services, legal requirements, 
+                                or industry best practices.
+                            </p>
+                            <p>
+                                <strong class="text-white">Last Updated:</strong> September 19, 2025
+                            </p>
+                            <p>
+                                Users are encouraged to review this disclaimer regularly. Continued use of Med Ease after any 
+                                changes constitutes acceptance of the updated disclaimer.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Contact Us
+                        </h2>
+                        <div class="space-y-4 text-neutral-300 leading-relaxed">
+                            <p>
+                                If you have questions about this disclaimer or Med Ease services, please contact us:
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-6 mt-6">
+                                <div class="space-y-2">
+                                    <p><strong class="text-white">Email:</strong> legal@medease.com</p>
+                                    <p><strong class="text-white">Phone:</strong> +1 (800) MED-EASE</p>
+                                </div>
+                                <div class="space-y-2">
+                                    <p><strong class="text-white">Address:</strong></p>
+                                    <p>Med Ease Technologies<br>
+                                    123 Healthcare Ave<br>
+                                    Medical District, CA 90210</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Notice -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="text-center bg-white/5 border border-white/10 rounded-2xl p-12">
+                    <h2 class="text-2xl font-bold mb-6 gradient-text">Remember</h2>
+                    <p class="text-lg text-neutral-300 max-w-3xl mx-auto leading-relaxed">
+                        Med Ease is a tool designed to support your health journey, not replace professional medical care. 
+                        When in doubt about your health, always consult with qualified healthcare professionals.
+                    </p>
+                    <div class="mt-8">
+                        <a href="index.html" class="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-neutral-200 transition inline-flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Return to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

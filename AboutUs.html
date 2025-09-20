@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Med Ease</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+        <div class="mx-auto max-w-[1400px] px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl font-bold tracking-tight">MED EASE</span>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="home.html" class="text-neutral-300 hover:text-white transition font-medium">Home</a>
+                    <a href="/contact" class="text-neutral-300 hover:text-white transition font-medium">Contact</a>
+                </nav>
+                <button class="md:hidden text-white">
+                    <span class="text-sm font-medium">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20">
+        <!-- Hero Section -->
+        <section class="relative py-20 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                        <span class="gradient-text">About Med Ease</span>
+                    </h1>
+                    <p class="text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed">
+                        Revolutionizing healthcare through innovative technology and compassionate care. 
+                        We make medical services accessible, efficient, and patient-centered.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+                        <h2 class="text-3xl font-bold mb-6 text-white">Our Mission</h2>
+                        <p class="text-neutral-300 leading-relaxed text-lg">
+                            To democratize healthcare by providing seamless, technology-driven medical services 
+                            that prioritize patient convenience, safety, and outcomes. We bridge the gap between 
+                            traditional healthcare and modern digital solutions.
+                        </p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+                        <h2 class="text-3xl font-bold mb-6 text-white">Our Vision</h2>
+                        <p class="text-neutral-300 leading-relaxed text-lg">
+                            To create a world where quality healthcare is accessible to everyone, everywhere. 
+                            Through innovation and compassion, we envision a future where medical care is 
+                            personalized, predictive, and preventive.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Story -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold mb-12 gradient-text">Our Story</h2>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-12">
+                        <p class="text-neutral-300 leading-relaxed text-lg mb-6">
+                            Founded in 2023, Med Ease emerged from a simple yet powerful idea: healthcare should be 
+                            as easy as ordering your morning coffee. Our founders, a team of healthcare professionals 
+                            and technology experts, recognized the growing gap between patient needs and traditional 
+                            healthcare delivery methods.
+                        </p>
+                        <p class="text-neutral-300 leading-relaxed text-lg">
+                            Today, we serve thousands of patients worldwide, offering everything from virtual 
+                            consultations to AI-powered health monitoring. Our platform has facilitated over 
+                            100,000 medical interactions, helping patients receive timely care and enabling 
+                            healthcare providers to deliver better outcomes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Our Core Values</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl card-hover">
+                        <div class="w-16 h-16 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white">Patient-Centric</h3>
+                        <p class="text-neutral-300">Every decision we make prioritizes patient safety, comfort, and satisfaction.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl card-hover">
+                        <div class="w-16 h-16 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🚀</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white">Innovation</h3>
+                        <p class="text-neutral-300">We continuously push boundaries to deliver cutting-edge healthcare solutions.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl card-hover">
+                        <div class="w-16 h-16 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🤝</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white">Integrity</h3>
+                        <p class="text-neutral-300">We maintain the highest standards of ethics and transparency in all our operations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Statistics -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-12">
+                    <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Med Ease by Numbers</h2>
+                    <div class="grid md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="text-4xl font-bold text-white mb-2">100K+</div>
+                            <div class="text-neutral-300">Patients Served</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-white mb-2">500+</div>
+                            <div class="text-neutral-300">Healthcare Providers</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-white mb-2">50+</div>
+                            <div class="text-neutral-300">Cities Covered</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-white mb-2">99.8%</div>
+                            <div class="text-neutral-300">Satisfaction Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-16 px-6">
+            <div class="mx-auto max-w-[1400px]">
+                <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Leadership Team</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+                        <div class="w-24 h-24 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                            <span class="text-3xl">👨‍⚕️</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Dr. Sarah Johnson</h3>
+                        <p class="text-neutral-400 mb-4">Chief Executive Officer</p>
+                        <p class="text-neutral-300 text-sm">Former VP of Digital Health at Johns Hopkins, passionate about healthcare accessibility.</p>
+                    </div>
+                    <div class="text-center bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+                        <div class="w-24 h-24 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                            <span class="text-3xl">👨‍💻</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Michael Chen</h3>
+                        <p class="text-neutral-400 mb-4">Chief Technology Officer</p>
+                        <p class="text-neutral-300 text-sm">Former lead engineer at Google Health, expert in AI and machine learning applications.</p>
+                    </div>
+                    <div class="text-center bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+                        <div class="w-24 h-24 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
+                            <span class="text-3xl">👩‍⚕️</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Dr. Emily Rodriguez</h3>
+                        <p class="text-neutral-400 mb-4">Chief Medical Officer</p>
+                        <p class="text-neutral-300 text-sm">Board-certified physician with 15+ years in telemedicine and patient care innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-20 px-6">
+            <div class="mx-auto max-w-[1400px] text-center">
+                <h2 class="text-4xl font-bold mb-6 gradient-text">Ready to Experience Better Healthcare?</h2>
+                <p class="text-xl text-neutral-300 mb-12 max-w-3xl mx-auto">
+                    Join thousands of patients who have already discovered the Med Ease difference. 
+                    Start your health journey with us today.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-neutral-200 transition">
+                        Start Your Checkup
+                    </button>
+                    <button class="border border-white/20 text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition">
+                        Contact Us
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Bar (matching your existing footer) -->
+    <footer class="fixed inset-x-0 bottom-0 z-40 bg-black/80 border-white/10 border-t backdrop-blur-sm">
+        <div class="mx-auto max-w-[1400px]">
+            <nav class="flex divide-x divide-white/10">
+                <a href="#about-us"
+                    class="group flex flex-1 items-center justify-center gap-2 text-[13px] text-white transition font-medium pt-5 pr-6 pb-5 pl-6 bg-white/5">
+                    <span class="tracking-tight">About Us</span>
+                </a>
+                <a href="#services"
+                    class="group flex flex-1 items-center justify-center gap-2 text-[13px] hover:text-white transition font-medium text-neutral-300 pt-5 pr-6 pb-5 pl-6">
+                    <span class="tracking-tight">Services</span>
+                </a>
+                <a href="#how-it-works"
+                    class="group flex flex-1 items-center justify-center gap-2 text-[13px] hover:text-white transition font-medium text-neutral-300 pt-5 pr-6 pb-5 pl-6">
+                    <span class="tracking-tight">How It Works</span>
+                </a>
+                <a href="#faq"
+                    class="group flex flex-1 items-center justify-center gap-2 text-[13px] hover:text-white transition font-medium text-neutral-300 pt-5 pr-6 pb-5 pl-6">
+                    <span class="tracking-tight">FAQ & Support</span>
+                </a>
+                <a href="#disclaimer"
+                    class="group flex flex-1 items-center justify-center gap-2 text-[13px] hover:text-white transition font-medium text-neutral-300 pt-5 pr-6 pb-5 pl-6">
+                    <span class="tracking-tight">Disclaimer</span>
+                </a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

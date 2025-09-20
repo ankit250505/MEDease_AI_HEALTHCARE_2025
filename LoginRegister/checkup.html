@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Dashboard - Med Ease</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/healthcare.js"></script>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar-collapsed {
+            width: 80px;
+        }
+
+        .sidebar-expanded {
+            width: 300px;
+        }
+
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+
+        .symptom-severity {
+            background: linear-gradient(90deg, #10b981 0%, #f59e0b 50%, #ef4444 100%);
+            border-radius: 9999px;
+            height: 8px;
+        }
+
+        .report-upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .report-upload-area.drag-over {
+            border-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm border-b border-white/10">
+        <div class="px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <button id="sidebarToggle" class="text-white/80 hover:text-white lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <a href="/home.html" class="flex items-center space-x-2">
+                        <span class="text-xl font-bold tracking-tight">MED EASE</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block text-right">
+                        <p class="text-sm font-medium text-white">Ankit Dabral</p>
+                        <p class="text-xs text-neutral-400">Premium Member</p>
+                    </div>
+                    <div class="relative">
+                        <button id="userMenuButton" class="w-10 h-10 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center text-white font-semibold text-sm hover:opacity-90 transition">
+                            JS
+                        </button>
+                        <!-- User dropdown menu -->
+                        <div id="userMenu" class="absolute right-0 top-12 w-48 bg-black/95 border border-white/20 rounded-xl backdrop-blur-md shadow-2xl opacity-0 invisible transition-all duration-300 transform translate-y-2">
+                            <div class="py-2">
+                                <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition">Profile Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition">Medical History</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 transition">Notifications</a>
+                                <div class="border-t border-white/10 my-2"></div>
+                                <a href="LoginRegister.html" class="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-white/10 transition">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex pt-16">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed left-0 top-16 h-full bg-white/5 border-r border-white/10 sidebar-expanded lg:relative lg:block hidden transition-all duration-300 z-30">
+            <div class="p-6">
+                <!-- Patient Info -->
+                <div class="mb-8">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                            JS
+                        </div>
+                        <div class="sidebar-text">
+                            <h3 class="font-semibold text-white">Ankit Dabral</h3>
+                            <p class="text-xs text-neutral-400">ID: ME-2025-001</p>
+                        </div>
+                    </div>
+                    <div class="sidebar-text space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Age:</span>
+                            <span class="text-white">29 years</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Gender:</span>
+                            <span class="text-white">Male</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Blood Type:</span>
+                            <span class="text-white">O+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="sidebar-text mb-8">
+                    <h4 class="font-medium text-white mb-4">Health Overview</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-neutral-400">Last Checkup</span>
+                            <span class="text-xs text-green-400 bg-green-400/20 px-2 py-1 rounded-full">2 days ago</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-neutral-400">Risk Level</span>
+                            <span class="text-xs text-yellow-400 bg-yellow-400/20 px-2 py-1 rounded-full">Low</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-neutral-400">Reports</span>
+                            <span class="text-xs text-blue-400">5 pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="sidebar-text">
+                    <h4 class="font-medium text-white mb-4">Quick Access</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-sm text-neutral-400 hover:text-white transition p-2 rounded-lg hover:bg-white/10">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2m0-8V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10M7 7v8a2 2 0 002 2h8a2 2 0 002-2V9M7 7V5a2 2 0 012-2h4a2 2 0 012 2v2" />
+                                </svg>
+                                <span>Medical History</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-sm text-neutral-400 hover:text-white transition p-2 rounded-lg hover:bg-white/10">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                                <span>Prescriptions</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-sm text-neutral-400 hover:text-white transition p-2 rounded-lg hover:bg-white/10">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4M5 20h14a2 2 0 002-2v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                                </svg>
+                                <span>Allergies</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-sm text-neutral-400 hover:text-white transition p-2 rounded-lg hover:bg-white/10">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <span>My Doctors</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Allergies & Conditions -->
+                <div class="sidebar-text mt-8">
+                    <h4 class="font-medium text-white mb-4">Medical Alerts</h4>
+                    <div class="space-y-2">
+                        <div class="bg-red-500/20 border border-red-500/30 rounded-lg p-3">
+                            <div class="flex items-center space-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                                <span class="text-sm font-medium text-red-400">Allergies</span>
+                            </div>
+                            <p class="text-xs text-red-300 mt-1">Penicillin, Shellfish</p>
+                        </div>
+                        <div class="bg-yellow-500/20 border border-yellow-500/30 rounded-lg p-3">
+                            <div class="flex items-center space-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-sm font-medium text-yellow-400">Conditions</span>
+                            </div>
+                            <p class="text-xs text-yellow-300 mt-1">Mild Hypertension</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:ml-0" id="mainContent">
+            <!-- Welcome Section -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2">Good morning, Ankit!</h1>
+                        <p class="text-neutral-400">How are you feeling today? Let's take care of your health.</p>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <p class="text-sm text-neutral-400">Today's Date</p>
+                        <p class="text-lg font-semibold text-white" id="currentDate"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Functionalities -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <!-- Check Symptoms Card -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">Symptom Checker</h2>
+                            <p class="text-neutral-400">AI-powered health assessment</p>
+                        </div>
+                    </div>
+                    <p class="text-neutral-300 mb-6 leading-relaxed">
+                        Get personalized insights about your symptoms with our advanced AI system. 
+                        Receive preliminary analysis and specialist recommendations.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-neutral-400">
+                            <span>✓ 2-minute assessment</span><br>
+                            <span>✓ Specialist recommendations</span>
+                        </div>
+                        <button onclick="startSymptomChecker()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center space-x-2">
+                            <span>Start Check</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Upload Reports Card -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-green-500/20 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">Upload Reports</h2>
+                            <p class="text-neutral-400">Medical analysis & insights</p>
+                        </div>
+                    </div>
+                    <p class="text-neutral-300 mb-6 leading-relaxed">
+                        Upload lab reports, scans, or doctor notes for comprehensive analysis. 
+                        Get risk assessments and next-step recommendations.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-neutral-400">
+                            <span>✓ Instant analysis</span><br>
+                            <span>✓ Risk assessment</span>
+                        </div>
+                        <button onclick="startReportUpload()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center space-x-2">
+                            <span>Upload</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 text-center card-hover">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-purple-500/20 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Find Doctors</h3>
+                    <p class="text-neutral-400 text-sm mb-4">Connect with verified specialists</p>
+                    <button class="text-purple-400 hover:text-purple-300 text-sm font-medium">Browse →</button>
+                </div>
+                
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 text-center card-hover">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-orange-500/20 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4M5 20h14a2 2 0 002-2v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Emergency</h3>
+                    <p class="text-neutral-400 text-sm mb-4">24/7 emergency assistance</p>
+                    <button class="text-orange-400 hover:text-orange-300 text-sm font-medium">Call Now →</button>
+                </div>
+                
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 text-center card-hover">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-pink-500/20 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Health Trends</h3>
+                    <p class="text-neutral-400 text-sm mb-4">Track your health progress</p>
+                    <button class="text-pink-400 hover:text-pink-300 text-sm font-medium">View →</button>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                <h2 class="text-2xl font-bold text-white mb-6">Recent Activity</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4 p-4 bg-white/5 rounded-xl">
+                        <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-medium text-white">Symptom check completed</p>
+                            <p class="text-sm text-neutral-400">Headache assessment - Low risk detected</p>
+                        </div>
+                        <span class="text-xs text-neutral-500">2 hours ago</span>
+                    </div>
+                    <div class="flex items-center space-x-4 p-4 bg-white/5 rounded-xl">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-medium text-white">Blood test report uploaded</p>
+                            <p class="text-sm text-neutral-400">Complete metabolic panel - Results normal</p>
+                        </div>
+                        <span class="text-xs text-neutral-500">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Symptom Checker Modal -->
+    <div id="symptomModal" class="fixed inset-0 bg-black/80 modal-overlay z-50 flex items-center justify-center p-6 opacity-0 invisible transition-all duration-300">
+        <div class="bg-black/95 border border-white/20 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
+                <h2 class="text-2xl font-bold text-white">Symptom Checker</h2>
+                <button onclick="closeSymptomModal()" class="text-white/60 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto max-h-[70vh]">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-white">Progress</span>
+                        <span class="text-sm text-neutral-400" id="progressText">Step 1 of 4</span>
+                    </div>
+                    <div class="w-full bg-white/10 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full progress-bar" id="progressBar" style="width: 25%"></div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Basic Information -->
+                <div id="step1" class="symptom-step">
+                    <h3 class="text-xl font-semibold text-white mb-6">Tell us about your symptoms</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-3">What symptoms are you experiencing?</label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="checkbox" name="symptoms" value="headache" class="mr-3">
+                                    <span class="text-sm text-white">Headache</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="checkbox" name="symptoms" value="fever" class="mr-3">
+                                    <span class="text-sm text-white">Fever</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="checkbox" name="symptoms" value="cough" class="mr-3">
+                                    <span class="text-sm text-white">Cough</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="checkbox" name="symptoms" value="nausea" class="mr-3">
+                                    <span class="text-sm text-white">Nausea</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="checkbox" name="symptoms" value="fatigue" class="mr-3">
+                                    <span class="text-sm text-white">Fatigue</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="checkbox" name="symptoms" value="chest_pain" class="mr-3">
+                                    <span class="text-sm text-white">Chest Pain</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-3">Other symptoms (optional)</label>
+                            <textarea class="w-full p-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-blue-400 resize-none" rows="3" placeholder="Describe any other symptoms you're experiencing..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Duration and Severity -->
+                <div id="step2" class="symptom-step hidden">
+                    <h3 class="text-xl font-semibold text-white mb-6">When did these symptoms start?</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-3">Symptom onset</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="onset" value="today" class="mr-3">
+                                    <span class="text-sm text-white">Today</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="onset" value="yesterday" class="mr-3">
+                                    <span class="text-sm text-white">Yesterday</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="onset" value="week" class="mr-3">
+                                    <span class="text-sm text-white">This week</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="onset" value="longer" class="mr-3">
+                                    <span class="text-sm text-white">Longer ago</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-3">How severe are your symptoms? (1 = Mild, 10 = Severe)</label>
+                            <div class="relative">
+                                <input type="range" id="severityRange" min="1" max="10" value="5" class="w-full h-2 symptom-severity outline-none appearance-none cursor-pointer">
+                                <div class="flex justify-between text-xs text-neutral-400 mt-2">
+                                    <span>1 - Mild</span>
+                                    <span id="severityValue">5 - Moderate</span>
+                                    <span>10 - Severe</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Additional Information -->
+                <div id="step3" class="symptom-step hidden">
+                    <h3 class="text-xl font-semibold text-white mb-6">Additional Information</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-3">Are you taking any medications?</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center p-4 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="medications" value="yes" class="mr-3">
+                                    <span class="text-sm text-white">Yes</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="medications" value="no" class="mr-3">
+                                    <span class="text-sm text-white">No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-3">Have you traveled recently?</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center p-4 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="travel" value="yes" class="mr-3">
+                                    <span class="text-sm text-white">Yes</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-white/20 rounded-xl cursor-pointer hover:border-blue-400 transition">
+                                    <input type="radio" name="travel" value="no" class="mr-3">
+                                    <span class="text-sm text-white">No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-3">Any additional notes?</label>
+                            <textarea class="w-full p-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-blue-400 resize-none" rows="4" placeholder="Any other relevant information about your symptoms or condition..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Results -->
+                <div id="step4" class="symptom-step hidden">
+                    <h3 class="text-xl font-semibold text-white mb-6">Your Health Assessment</h3>
+                    <div id="symptomResults">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between p-6 border-t border-white/10">
+                <button id="prevBtn" onclick="previousStep()" class="px-6 py-2 border border-white/20 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition hidden">
+                    Previous
+                </button>
+                <div class="flex-1"></div>
+                <button id="nextBtn" onclick="nextStep()" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Upload Modal -->
+    <div id="reportModal" class="fixed inset-0 bg-black/80 modal-overlay z-50 flex items-center justify-center p-6 opacity-0 invisible transition-all duration-300">
+        <div class="bg-black/95 border border-white/20 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
+                <h2 class="text-2xl font-bold text-white">Upload Medical Reports</h2>
+                <button onclick="closeReportModal()" class="text-white/60 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto max-h-[70vh]">
+                <!-- Upload Area -->
+                <div class="mb-8">
+                    <div id="uploadArea" class="report-upload-area p-12 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-green-500/20 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Drop files here or click to upload</h3>
+                        <p class="text-neutral-400 text-sm mb-4">Supported formats: PDF, JPG, PNG, DICOM</p>
+                        <button onclick="document.getElementById('fileInput').click()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl transition">
+                            Choose Files
+                        </button>
+                        <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.dicom" class="hidden">
+                    </div>
+                </div>
+
+                <!-- Report Type Selection -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-white mb-3">What type of report are you uploading?</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-green-400 transition">
+                            <input type="radio" name="reportType" value="blood_test" class="mr-3">
+                            <span class="text-sm text-white">Blood Test</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-green-400 transition">
+                            <input type="radio" name="reportType" value="imaging" class="mr-3">
+                            <span class="text-sm text-white">Imaging</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-green-400 transition">
+                            <input type="radio" name="reportType" value="prescription" class="mr-3">
+                            <span class="text-sm text-white">Prescription</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-white/20 rounded-xl cursor-pointer hover:border-green-400 transition">
+                            <input type="radio" name="reportType" value="other" class="mr-3">
+                            <span class="text-sm text-white">Other</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Uploaded Files List -->
+                <div id="uploadedFiles" class="space-y-3">
+                    <!-- Files will be added here dynamically -->
+                </div>
+
+                <!-- Analysis Results -->
+                <div id="reportAnalysis" class="hidden mt-8 p-6 bg-white/5 border border-white/10 rounded-xl">
+                    <h3 class="text-lg font-semibold text-white mb-4">Analysis Results</h3>
+                    <div id="analysisContent">
+                        <!-- Analysis results will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between p-6 border-t border-white/10">
+                <div class="text-sm text-neutral-400">
+                    <span id="fileCount">No files selected</span>
+                </div>
+                <button id="analyzeBtn" onclick="analyzeReports()" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Analyze Reports
+                </button>
+            </div>
+        </div>
+    </div>
+    
+<!-- Floating Chatbot -->
+<div id="chatbot" class="fixed bottom-6 right-6 z-50">
+    <!-- Chat Button -->
+    <button id="chatToggle" class="w-14 h-14 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+        <svg id="chatIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chatWindow" class="absolute bottom-16 right-0 w-96 h-96 bg-black/95 border border-white/20 rounded-2xl backdrop-blur-md shadow-2xl opacity-0 invisible transition-all duration-300 transform scale-95 flex flex-col">
+        <!-- Chat Header -->
+        <div class="flex items-center justify-between p-4 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">✚</span>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-white">Med Ease Assistant</h3>
+                    <p class="text-xs text-green-400">Online • Ready to help</p>
+                </div>
+            </div>
+            <button onclick="toggleChatbot()" class="text-white/60 hover:text-white transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3">
+            <!-- Welcome Message -->
+            <div class="flex space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white font-bold text-xs">✚</span>
+                </div>
+                <div class="bg-white/10 rounded-2xl rounded-tl-none p-3 max-w-xs">
+                    <p class="text-white text-sm">Hi Ankit! I'm your Med Ease assistant. How can I help you today?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggested Questions -->
+        <div id="suggestedQuestions" class="p-4 border-t border-white/10">
+            <p class="text-xs text-neutral-400 mb-3">Suggested questions:</p>
+            <div class="space-y-2">
+                <button onclick="askQuestion('How do I use the symptom checker?')" class="w-full text-left bg-white/5 hover:bg-white/10 border border-white/20 rounded-lg p-2 text-xs text-white transition">
+                    How do I use the symptom checker?
+                </button>
+                <button onclick="askQuestion('How to upload medical reports?')" class="w-full text-left bg-white/5 hover:bg-white/10 border border-white/20 rounded-lg p-2 text-xs text-white transition">
+                    How to upload medical reports?
+                </button>
+                <button onclick="askQuestion('Where can I find nearby doctors?')" class="w-full text-left bg-white/5 hover:bg-white/10 border border-white/20 rounded-lg p-2 text-xs text-white transition">
+                    Where can I find nearby doctors?
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="p-4 border-t border-white/10">
+            <div class="flex space-x-2">
+                <input 
+                    type="text" 
+                    id="chatInput" 
+                    placeholder="Type your question..."
+                    class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 text-sm focus:outline-none focus:border-blue-400 transition"
+                >
+                <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-xl transition flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="checkup.js"></script>
+</body>
+</html>
